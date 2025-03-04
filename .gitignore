@@ -1,0 +1,85 @@
+# General Python
+__pycache__/
+*.py[cod]
+*.so
+*.egg
+*.egg-info/
+dist/
+build/
+*.log
+
+# Jupyter Notebooks
+.ipynb_checkpoints/
+
+# Virtual Environments
+env/
+venv/
+ENV/
+.venv/
+.env
+
+# VS Code
+.vscode/
+*.code-workspace
+
+# OS Files
+.DS_Store
+Thumbs.db
+
+# Python Package Files
+*.pyo
+*.pyd
+
+# Logs and Databases
+*.sqlite3
+*.db
+
+# Secrets
+.env
+*.pem
+*.key
+*.crt
+
+# Python environments
+*.conda
+*.yml
+
+# Compressed files
+*.zip
+*.tar
+*.tar.gz
+*.rar
+
+# Checkpoint or temp files
+*.bak
+*.tmp
+*.swp
+*.swo
+
+# Model files
+*.h5
+*.pkl
+*.joblib
+*.pt
+
+# Plot images and reports
+*.png
+*.jpg
+*.jpeg
+*.pdf
+
+# Cache files
+__pycache__/
+*.ipynb_checkpoints/
+
+# Coverage reports
+.coverage
+*.cover
+*.coverage.*
+
+# PyCharm
+.idea/
+
+# Docker
+docker-compose.yml
+Dockerfile
