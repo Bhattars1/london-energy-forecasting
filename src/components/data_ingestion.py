@@ -11,7 +11,7 @@ sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '.
 from src.exception_handler import CustomException
 from src.logger import logging
 from src.components.data_preprocessing import DataPreprocessing, DataPreprocessingConfig
-
+from src.components.train import ModelTrainer, ModelTrainerConfig
 
 @dataclass
 class DataIngestionConfig:
@@ -26,6 +26,7 @@ class DataIngestion:
         logging.info("Data ingestion Initiated")
         try:
             df = pd.read_csv(r"data\processed data\processed_data.csv")
+            
             logging.info("Read the data successfully!")
 
             os.makedirs(os.path.dirname(self.ingestion_config.data_path), exist_ok=True)
@@ -42,7 +43,10 @@ if __name__ == "__main__":
     obj = DataIngestion()
     data_path = obj.initiate_ingestion()
     data_preprocessing = DataPreprocessing()
-    data_preprocessing.data_preprocessor(data_path)
+    data_arr,_=data_preprocessing.data_preprocessor(data_path)
+
+    modeltrainer = ModelTrainer()
+    print(modeltrainer.model_trainer(data_array=data_arr))
 
 
     

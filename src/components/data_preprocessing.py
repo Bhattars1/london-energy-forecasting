@@ -79,6 +79,7 @@ class DataPreprocessing(CyclicDateEncoder):
             logging.info("Applying preprocessing object on the dataframe")   
 
             input_features_df = preprocessing_obj(input_features)
+            input_features_df = input_features_df.drop(df.columns[0], axis=1)
 
             data_arr = np.c_[input_features_df, np.array(target_features)]
             logging.info("Preprocessing completed") 
