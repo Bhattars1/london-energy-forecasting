@@ -2,4 +2,6 @@ scikit-learn
 xgboost 
 pandas
 dill
+flask
+pickle
 -e .

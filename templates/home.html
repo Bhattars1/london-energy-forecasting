@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ML Model Prediction</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f8f9fa;
+            padding: 20px;
+        }
+        .container {
+            background-color: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .btn-primary {
+            background-color: #007bff;
+            border-color: #007bff;
+        }
+        h2 {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>London Energy Prediction</h2>
+    <form action="{{url_for('prediction')}}" method="POST">
+        <div class="form-group">
+            <label for="date">Date:</label>
+            <input type="date" class="form-control" id="date" name="date" required value="{{ request.form.get('date', '') }}">
+        </div>
+        <div class="form-group">
+            <label for="air_temperature_mean">Air Temperature Mean (°C):</label>
+            <input type="number" step="any" class="form-control" id="air_temperature_mean" name="air_temperature_mean" required value="{{ request.form.get('air_temperature_mean', '') }}">
+        </div>
+        <div class="form-group">
+            <label for="dewpoint_mean">Dewpoint Mean (°C):</label>
+            <input type="number" step="any" class="form-control" id="dewpoint_mean" name="dewpoint_mean" required value="{{ request.form.get('dewpoint_mean', '') }}">
+        </div>
+        <div class="form-group">
+            <label for="rltv_hum_mean">Relative Humidity Mean (%):</label>
+            <input type="number" step="any" class="form-control" id="rltv_hum_mean" name="rltv_hum_mean" required value="{{ request.form.get('rltv_hum_mean', '') }}">
+        </div>
+        <div class="form-group">
+            <label for="air_temperature_min">Air Temperature Minimum (°C):</label>
+            <input type="number" step="any" class="form-control" id="air_temperature_min" name="air_temperature_min" required value="{{ request.form.get('air_temperature_min', '') }}">
+        </div>
+        <div class="form-group">
+            <label for="rltv_hum_min">Relative Humidity Minimum (%):</label>
+            <input type="number" step="any" class="form-control" id="rltv_hum_min" name="rltv_hum_min" required value="{{ request.form.get('rltv_hum_min', '') }}">
+        </div>
+        <div class="form-group">
+            <label for="air_temperature_max">Air Temperature Maximum (°C):</label>
+            <input type="number" step="any" class="form-control" id="air_temperature_max" name="air_temperature_max" required value="{{ request.form.get('air_temperature_max', '') }}">
+        </div>
+        <div class="form-group">
+            <label for="prcp_count">Precipitation Count (hours):</label>
+            <input type="number" step="any" class="form-control" id="prcp_count" name="prcp_count" required value="{{ request.form.get('prcp_count', '') }}">
+        </div>
+        <div class="form-group">
+            <label for="day">Day of the Week:</label>
+            <select class="form-control" id="day" name="day">
+                <option value="Monday" {% if request.form.get('day') == "Monday" %}selected{% endif %}>Monday</option>
+                <option value="Tuesday" {% if request.form.get('day') == "Tuesday" %}selected{% endif %}>Tuesday</option>
+                <option value="Wednesday" {% if request.form.get('day') == "Wednesday" %}selected{% endif %}>Wednesday</option>
+                <option value="Thursday" {% if request.form.get('day') == "Thursday" %}selected{% endif %}>Thursday</option>
+                <option value="Friday" {% if request.form.get('day') == "Friday" %}selected{% endif %}>Friday</option>
+                <option value="Saturday" {% if request.form.get('day') == "Saturday" %}selected{% endif %}>Saturday</option>
+                <option value="Sunday" {% if request.form.get('day') == "Sunday" %}selected{% endif %}>Sunday</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="holiday">Is it a holiday?</label>
+            <input type="checkbox" id="holiday" name="holiday" {% if request.form.get('holiday') %}checked{% endif %}>
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-block">Predict</button>
+    </form>
+</div>
+
+{% if out1 is not none %}
+    <div class="container mt-5">
+        <h3>Prediction Results</h3>
+        <h4>User Input:</h4>
+        <ul>
+            <li><strong>Date:</strong> {{ request.form.get('date', 'N/A') }}</li>
+            <li><strong>Air Temperature Mean:</strong> {{ request.form.get('air_temperature_mean', 'N/A') }} °C</li>
+            <li><strong>Dewpoint Mean:</strong> {{ request.form.get('dewpoint_mean', 'N/A') }} °C</li>
+            <li><strong>Relative Humidity Mean:</strong> {{ request.form.get('rltv_hum_mean', 'N/A') }} %</li>
+            <li><strong>Air Temperature Min:</strong> {{ request.form.get('air_temperature_min', 'N/A') }} °C</li>
+            <li><strong>Relative Humidity Min:</strong> {{ request.form.get('rltv_hum_min', 'N/A') }} %</li>
+            <li><strong>Air Temperature Max:</strong> {{ request.form.get('air_temperature_max', 'N/A') }} °C</li>
+            <li><strong>Precipitation Count:</strong> {{ request.form.get('prcp_count', 'N/A') }} hours</li>
+            <li><strong>Day:</strong> {{ request.form.get('day', 'N/A') }}</li>
+            <li><strong>Holiday:</strong> {% if request.form.get('holiday') %}Yes{% else %}No{% endif %}</li>
+        </ul>
+        
+        <h4>Prediction:</h4>
+        <ul>
+            <li><strong>Mean Consumption:</strong> {{ out1 }}</li>
+            <li><strong>Median Consumption:</strong> {{ out2 }}</li>
+            <li><strong>Standard Deviation Consumption:</strong> {{ out3 }}</li>
+        </ul>
+    </div>
+{% endif %}
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

@@ -72,16 +72,21 @@ class DataPreprocessing(CyclicDateEncoder):
             preprocessing_obj = self.get_data_preprocessor_object()
 
             target_columns = ['mean_consumption', 'median_consumption', 'std_consumption']
-            target_features = df[target_columns]
-            input_features = df.drop(columns = list(target_features.columns), axis=1)
-            
+            if all(col in df.columns for col in target_columns):
+                target_features = df[target_columns]
+                input_features = df.drop(columns=target_columns, axis=1)
+            else:
+                input_features = df
 
             logging.info("Applying preprocessing object on the dataframe")   
 
             input_features_df = preprocessing_obj(input_features)
             input_features_df = input_features_df.drop(df.columns[0], axis=1)
+            try:
+                data_arr = np.c_[input_features_df, np.array(target_features)]
+            except:
+                data_arr = input_features
 
-            data_arr = np.c_[input_features_df, np.array(target_features)]
             logging.info("Preprocessing completed") 
 
             save_object(

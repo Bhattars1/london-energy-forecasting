@@ -11,6 +11,9 @@ build/
 # Jupyter Notebooks
 .ipynb_checkpoints/
 
+# dataset
+user_data/
+
 # Virtual Environments
 env/
 venv/
