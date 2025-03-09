@@ -1,7 +1,7 @@
 # Energy Demand Forcasting Based on Weather and Time-Based Patterns in London Households
 
 ## Introduction
-Accurately predicting household energy consumption is essential for efficient energy management and promoting sustainability, particularly in a dynamic urban environment like London. This project aims to investigate the relationship between weather patterns, time-based patterns (including day of the week, weekdays vs. weekends, and holidays), and household energy consumption across London. This project primarily focuses on developing modular structure of production standard with basic logging and exception handling. 
+Accurately predicting household energy consumption is essential for efficient energy management and promoting sustainability, particularly in a dynamic urban environment like London. This project aims to investigate the relationship between weather patterns, time-based patterns (including day of the week, weekdays vs. weekends, and holidays), and household energy consumption across London, and finally developing a predictive Machine Learning model based on the investigation and analysis. This project primarily focuses on developing modular structure of production standard with basic logging and exception handling. 
 
 ## Data and Preprocessing
 ### Weather Data
