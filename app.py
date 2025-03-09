@@ -4,6 +4,7 @@ from flask import Flask, request, render_template
 from src.pipeline.prediction_pipeline import CustomData, PredictPipeline
 from src.exception_handler import CustomException
 from datetime import datetime
+from src.logger import logging
 import os
 
 application = Flask(__name__)
@@ -78,7 +79,9 @@ def prediction():
 
 
             # Returning the prediction results to the template
+            logging.info("Predicted the energy demand of a user")
             return render_template("home.html", prediction=True, out1=results[0][0], out2=results[0][1], out3=results[0][2])
+        
 
         except Exception as e:
             raise CustomException(f"Error during prediction: {str(e)}", sys)
@@ -88,4 +91,4 @@ def prediction():
 
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", debug=True)
+    app.run(host="0.0.0.0", port=5000, debug= True)
