@@ -18,7 +18,7 @@ The data cleaning and preprocessing were conducted in notebooks, where several t
 **Missing Dates**: If a date was missing, the first option was to fill the gap with data from the previous year. If that data wasn’t available, the gap was filled using the monthly-hourly average across all available years.
 
 ### Energy Data
-The energy consumption data was obtained from the **London Government Data Portal**, specifically the SmartMeter Energy Consumption Data in London Households dataset. This dataset includes energy consumption readings from a sample of 5,567 households in London, spanning from November 2011 to February 2014. 
+The energy consumption data was obtained from the **London Government Data Portal** (https://data.london.gov.uk/), specifically the SmartMeter Energy Consumption Data in London Households dataset. This dataset includes energy consumption readings from a sample of 5,567 households in London, spanning from November 2011 to February 2014. 
 Similar to the weather data, the energy consumption dataset was cleaned, formatted, and merged with the weather dataset. Additionally, the **day of the week and bank holiday** information were integrated into the combined dataset.
 After cleaning and merging the datasets, an exploratory data analysis (EDA) was conducted using various visualization techniques. One significant insight from the EDA was that average energy consumption tends to be higher on weekends and bank holidays, highlighting the importance of these two factors in model development.
 
@@ -51,9 +51,27 @@ The following table shows the performance of each model:
 | Polynomial Regression | 0.561        | 0.729  |
 | XGBoost              | 0.565      | 0.885            |
 
-Thus it was decided that XGBOOST will be used for the model development and deployment. After developing and training the model, a modular structure was implemented using Flask for deployment. Once the model was finalized, a Docker image was created to package the application for easy deployment.
+The following images shows the forcasting of energy by different models
+### XGBoost
+![Forcasting by XGBoost](images/xgboost_prediction.png)
+### Linear Regression
+![Forcasting by Linear Regression](images/linear_regression_prediction.png)
+### Polynomial Regression
+![Forcasting by Polynomial Regression](images/polynomial_regression_prediction.png)
+
+Thus by the analysis, it was decided that XGBOOST will be used for the model development and deployment. After developing and training the model, a modular structure was implemented using Flask for deployment. Once the model was finalized, a Docker image was created to package the application for easy deployment.
 
 The Docker image was then pushed to Docker Hub for sharing and deployment. To pull the image, use the following command:
 
 ``docker pull bhattars1/london-energy-forcasting-version-1.0``
+## Deployment
+
+The following images are the snips of deployment in a webpage.
+
+
+![Deployment Image](images/deploy_page_1.png)
+
+
+![Deployment Image](images/deploy_page_2.png)
+
 
