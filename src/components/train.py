@@ -1,5 +1,6 @@
 import os
 import sys
+
 from dataclasses import dataclass
 from xgboost import XGBRegressor
 from sklearn.multioutput import MultiOutputRegressor

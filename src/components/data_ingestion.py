@@ -1,12 +1,11 @@
 import os
 import sys
+
 import pandas as pd
 from dataclasses import dataclass
 
 # Add the parent directory to sys.path
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..')))
-
-
 
 from src.exception_handler import CustomException
 from src.logger import logging

@@ -1,11 +1,14 @@
 import sys
+import os
+from datetime import datetime
+
 import pandas as pd
 from flask import Flask, request, render_template
+
 from src.pipeline.prediction_pipeline import CustomData, PredictPipeline
 from src.exception_handler import CustomException
-from datetime import datetime
 from src.logger import logging
-import os
+
 
 application = Flask(__name__)
 app = application
@@ -80,7 +83,11 @@ def prediction():
 
             # Returning the prediction results to the template
             logging.info("Predicted the energy demand of a user")
-            return render_template("home.html", prediction=True, out1=results[0][0], out2=results[0][1], out3=results[0][2])
+            return render_template("home.html",
+                                   prediction=True,
+                                   out1=results[0][0], 
+                                   out2=results[0][1], 
+                                   out3=results[0][2])
         
 
         except Exception as e:

@@ -1,9 +1,10 @@
 import sys
 import os
-import pandas as pd
-import numpy as np
 import dill
 import pickle
+
+import pandas as pd
+import numpy as np
 from sklearn.metrics import r2_score
 
 from src.exception_handler import CustomException
@@ -43,3 +44,4 @@ def load_object(file_path):
 
     except Exception as e:
         raise CustomException(e, sys)
+
