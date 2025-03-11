@@ -63,7 +63,7 @@ Thus by the analysis, it was decided that XGBOOST will be used for the model dev
 
 The Docker image was then pushed to Docker Hub for sharing and deployment. To pull the image, use the following command:
 
-``docker pull bhattars1/london-energy-forcasting-version-1.0``
+``docker pull bhattars1/london-energy-forcasting-version-1.1``
 ## Deployment
 
 The deployment process involved hosting the model using the Flask framework on a simple web page. All parameters, except for "day" and "holiday", were provided by the user through an input form. The "day" and "holiday" parameters were internally processed in the backend. The snapshots of deployment are provided.
