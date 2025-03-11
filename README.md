@@ -66,14 +66,26 @@ The Docker image was then pushed to Docker Hub for sharing and deployment. To pu
 ``docker pull bhattars1/london-energy-forcasting-version-1.0``
 ## Deployment
 
-The deployment was done using Flask framework in s simple webpage locally. Expect for the "day" and "holiday", all the parameters were asked as input form the user. The "day" and "holiday" parameters were processed internally in the backend.
+The deployment process involved hosting the model using the Flask framework on a simple web page. All parameters, except for "day" and "holiday", were provided by the user through an input form. The "day" and "holiday" parameters were internally processed in the backend. The snapshots of deployment are provided.
 
-The following images are the snips of deployment in a webpage.
-
+#### Local Deployment
+The model was first hosted locally using Flask, providing a simple web interface for user input.
 
 ![Deployment Image](images/deploy_page_1.png)
 
 
 ![Deployment Image](images/deploy_page_2.png)
 
+#### Contenarization
+1. A Docker image was created to package the Flask application along with its dependencies.
+2. The image was then pushed to Docker Hub for easy access and deployment.
+
+#### Scaling with Kubernetes
+1. The containerized application was deployed in a Kubernetes cluster for scalability.
+2. A Kubernetes Deployment was created to manage the pods running the application.
+
+![Deployment Image](images/kubernetes_dashboard.png)
+
+
+![Deployment Image](images/kubernetes_ternimal.png)
 

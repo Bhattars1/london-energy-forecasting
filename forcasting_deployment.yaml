@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: london-energy-forcasting
+  labels:
+    app: forcasting-app
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: forcasting-pod
+  template:
+    metadata:
+      labels:
+        app: forcasting-pod
+    spec:
+      containers:
+      - name: energy-forcasting-image
+        image: bhattars1/london-energy-forcasting-version-1.1
+        ports:
+        - containerPort: 5000
