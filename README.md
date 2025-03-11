@@ -77,12 +77,12 @@ The model was first hosted locally using Flask, providing a simple web interface
 ![Deployment Image](images/deploy_page_2.png)
 
 #### Contenarization
-1. A Docker image was created to package the Flask application along with its dependencies.
-2. The image was then pushed to Docker Hub for easy access and deployment.
+1. A **Docker** image was created to package the Flask application along with its dependencies.
+2. The image was then pushed to **Docker Hub** for easy access and deployment.
 
 #### Scaling with Kubernetes
-1. The containerized application was deployed in a Kubernetes cluster for scalability.
-2. A Kubernetes Deployment was created to manage the pods running the application.
+1. The containerized application was deployed in a **Kubernetes** cluster for scalability.
+2. A **Kubernetes Deployment** was created to manage the pods running the application.
 
 ![Deployment Image](images/kubernetes_dashboard.png)
 
