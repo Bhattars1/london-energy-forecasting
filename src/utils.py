@@ -45,3 +45,30 @@ def load_object(file_path):
     except Exception as e:
         raise CustomException(e, sys)
 
+
+def recognize_holiday(date_):
+    try:
+        bank_holidays = pd.read_excel("../data/public holiday/ukbankholidays-jul19.xls")
+        bank_holidays["UK BANK HOLIDAYS"] = pd.to_datetime(bank_holidays["UK BANK HOLIDAYS"], format = "%Y/%m/%d")
+        date_=pd.to_datetime(date_)
+        if date_ in bank_holidays["UK BANK HOLIDAYS"].values:
+            return 1
+        else:
+            return 0
+        
+    except Exception as e:
+        raise CustomException(e, sys)
+
+
+
+
+def recognize_day(date_):
+    try:
+        date_=pd.to_datetime(date_)
+        day = date_.weekday()
+        return day
+    except Exception as e:
+        raise CustomException(e, sys)
+        
+
+

@@ -8,6 +8,7 @@ from flask import Flask, request, render_template
 from src.pipeline.prediction_pipeline import CustomData, PredictPipeline
 from src.exception_handler import CustomException
 from src.logger import logging
+from src.utils import recognize_day, recognize_holiday
 
 
 application = Flask(__name__)
@@ -46,8 +47,8 @@ def prediction():
             rltv_hum_min = float(request.form.get("rltv_hum_min"))
             air_temperature_max = float(request.form.get("air_temperature_max"))
             prcp_count = int(request.form.get("prcp_count"))
-            day = day_dict[str(request.form.get("day"))]
-            holiday = 1 if request.form.get("holiday") == "on" else 0
+            day = recognize_day(date_=date)
+            holiday = recognize_holiday(date_=date)
 
             # Creating an instance of CustomData
             data = CustomData(

@@ -66,6 +66,8 @@ The Docker image was then pushed to Docker Hub for sharing and deployment. To pu
 ``docker pull bhattars1/london-energy-forcasting-version-1.0``
 ## Deployment
 
+The deployment was done using Flask framework in s simple webpage locally. Expect for the "day" and "holiday", all the parameters were asked as input form the user. The "day" and "holiday" parameters were processed internally in the backend.
+
 The following images are the snips of deployment in a webpage.
 
 
